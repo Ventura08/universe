@@ -22,6 +22,8 @@ export function PlanetsList() {
     getAll();
   }, [getAll]);
 
+  let filterPlanet = planets?.bodies.filter(item => item.isPlanet == true)
+
   return (
     <Swiper style={{background:"#1D1E24"}}
     spaceBetween={50}
@@ -29,7 +31,7 @@ export function PlanetsList() {
     onSlideChange={() => console.log("slide change")}
     onSwiper={(swiper) => console.log(swiper)}
   >
-      {planets?.bodies.map((item) => {
+      {filterPlanet?.map((item) => {
         return (
       
             <SwiperSlide className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))'}}>
