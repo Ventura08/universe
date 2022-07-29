@@ -9,6 +9,8 @@ export function AppRoutes() {
         <Header image={logo}/>
         <Routes>
           <Route path="/" element={<PlanetsList/>} />
+          <Route path="/dashboard" element={<p>Serviço indisponível</p>} />
+          <Route path="/galerry" element={<p>Serviço indisponível</p>} />
         </Routes>
     </Router>
   );

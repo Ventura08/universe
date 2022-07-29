@@ -54,8 +54,8 @@ function checkImage(name: string) {
       {filterPlanet?.map((item) => {
         image = checkImage(item.englishName);
         return (
-            <SwiperSlide className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))'}}>
-              <img src={image} alt="" style={item.englishName == 'Saturn' ? {marginTop: '-24px', width:'60%', height:'80%', objectFit:'cover'} : {marginTop: '-24px', width:'60%', height:'80%', objectFit:'cover'}}/>
+            <SwiperSlide className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))', height:'320px', zIndex:'2'}}>
+              <img src={image} alt="" style={item.englishName === 'Saturn' ? {marginTop: '-24px', width:'100%', height:'100%', objectFit:'cover', zIndex:1} : {marginTop: '-24px', width:'60%', height:'80%', objectFit:'cover'}}/>
               <p style={{color:'#FFAB07', fontSize:'18px', textShadow:'2px 2px 5px rgba(218, 218, 218, 0.25)', paddingTop:'10px'}}>{item.englishName}</p>
               <p>description</p>
             </SwiperSlide>
