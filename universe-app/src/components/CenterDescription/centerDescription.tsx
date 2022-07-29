@@ -1,4 +1,4 @@
-import Earth from '../../assets/Uranus.png'
+import Earth from '../../assets/uranus.png'
 export function CenterDescription() {
     return(
         <section className="d-flex justify-content-center" style={{padding:'80px', background:"#161616", flexWrap:'wrap'}}>

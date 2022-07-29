@@ -3,14 +3,14 @@ import { Planets } from "../../interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { PlanetService } from "../../services/PlanetService";
-import Earth from '../../assets/earth.jpeg'
-import Saturn from '../../assets/Saturn.png'
+import Earth from '../../assets/earth.png'
+import Saturn from '../../assets/saturn.png'
 import Mars from '../../assets/mars.png'
 import Neptune from '../../assets/neptune.png'
-import Uranus from '../../assets/Uranus.png'
-import Jupiter from '../../assets/jupiter.jpeg'
-import Mercury from '../../assets/mercury.jpeg'
-import Venus from '../../assets/venus.jpeg'
+import Uranus from '../../assets/uranus.png'
+import Jupiter from '../../assets/jupiter.png'
+import Mercury from '../../assets/mercury.png'
+import Venus from '../../assets/venus.png'
 
 export function CarouselPlanets() {
   const [planets, setPlanets] = useState<{ bodies: Planets[] }>();
