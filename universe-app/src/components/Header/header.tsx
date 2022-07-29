@@ -27,7 +27,7 @@ export function Header(props: any) {
         <div className='' style={{background: "#1D1E24", color: "#ffff"}}>
            <header className='d-flex justify-content-between align-items-center' style={{height:"80px"}}>
                <div>
-                   <img src={props.image} alt="logo"  style={{margin: '0px 20px'}}/>
+                   <img src={props.image} alt="logo"  style={{margin: '0px 20px', width:'200px', height:'60px', objectFit:"cover"}}/>
                </div>
 
                 <div className='h-100'>
