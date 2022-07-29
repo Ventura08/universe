@@ -4,10 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { PlanetService } from "../../services/PlanetService";
 import Earth from '../../assets/earth.jpeg'
-import Saturn from '../../assets/saturn.png'
+import Saturn from '../../assets/Saturn.png'
 import Mars from '../../assets/mars.png'
 import Neptune from '../../assets/neptune.png'
-import Uranus from '../../assets/uranus.png'
+import Uranus from '../../assets/Uranus.png'
 import Jupiter from '../../assets/jupiter.jpeg'
 import Mercury from '../../assets/mercury.jpeg'
 import Venus from '../../assets/venus.jpeg'
