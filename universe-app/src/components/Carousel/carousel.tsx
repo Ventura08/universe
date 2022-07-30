@@ -11,9 +11,14 @@ import Uranus from '../../assets/uranus.png'
 import Jupiter from '../../assets/jupiter.png'
 import Mercury from '../../assets/mercury.png'
 import Venus from '../../assets/venus.png'
+import { Spin } from 'antd';
+import 'antd/dist/antd.css';
 
 export function CarouselPlanets() {
   const [planets, setPlanets] = useState<{ bodies: Planets[] }>();
+  const [loading, setLoading] = useState<boolean>(true);
+
+  console.log(loading);
   
   const getAll = useCallback(async () => {
     const { status, data } = await PlanetService.getAll();
@@ -21,6 +26,7 @@ export function CarouselPlanets() {
     if (status !== 200) throw new Error();
 
     setPlanets(data);
+    await setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -29,7 +35,6 @@ export function CarouselPlanets() {
 
   let filterPlanet = planets?.bodies.filter(item => item.isPlanet === true)
   let image = null;
-
 
 function checkImage(name: string) {
   switch(name){
@@ -44,6 +49,7 @@ function checkImage(name: string) {
   }
 }
 
+if(!loading) {
   return (
     <Swiper style={{background:"#1D1E24", padding:'40px 24px 40px 24px', height:'100%'}}
     spaceBetween={50}
@@ -54,8 +60,8 @@ function checkImage(name: string) {
       {filterPlanet?.map((item) => {
         image = checkImage(item.englishName);
         return (
-            <SwiperSlide className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))', height:'320px', zIndex:'2'}}>
-              <img src={image} alt="" style={item.englishName === 'Saturn' ? {marginTop: '-24px', width:'100%', height:'100%', objectFit:'cover', zIndex:1} : {marginTop: '-24px', width:'60%', height:'80%', objectFit:'cover'}}/>
+            <SwiperSlide key={item.id} className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))', height:'320px', zIndex:'2'}}>
+              <img src={image} alt="" style={item.englishName === 'Saturn' ? {marginTop: '-24px', width:'100%', height:'100%', objectFit:'contain'} : {marginTop: '-24px', width:'60%', height:'80%', objectFit:'contain'}}/>
               <p style={{color:'#FFAB07', fontSize:'18px', textShadow:'2px 2px 5px rgba(218, 218, 218, 0.25)', paddingTop:'10px'}}>{item.englishName}</p>
               <p>description</p>
             </SwiperSlide>
@@ -63,4 +69,14 @@ function checkImage(name: string) {
       })}
      </Swiper>
   );
+}
+  return(
+   <div className="d-flex justify-content-center" style={{marginTop: '20px'}}>
+     <Spin size="large"/>
+   </div>
+  )
+  
+
+
+  
 }
