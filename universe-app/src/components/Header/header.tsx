@@ -5,29 +5,11 @@ import {
   } from '@ant-design/icons';
 
 export function Header(props: any) {
-    const [controlMenuDown, setControlMenuDown] = useState(false)
-    const [currentWidthScreen, setCurrentWidthScreen] = useState(0)
-
-    const changeMenuDown = () =>  {
-        setControlMenuDown(!controlMenuDown)
-    }
-
-    useEffect (() => {
-        setCurrentWidthScreen(window.innerWidth)
-    },[])
-
-    useEffect (() => {
-        window.addEventListener('resize', () => setCurrentWidthScreen(window.innerWidth))
-    }, [])
-
-    const isMenuAvailable = controlMenuDown && currentWidthScreen < 760
-
-
     return(
         <div className='' style={{background: "#1D1E24", color: "#ffff"}}>
            <header className='d-flex justify-content-between align-items-center' style={{height:"80px"}}>
                <div>
-                   <img src={props.image} alt="logo"  style={{margin: '0px 20px', width:'200px', height:'60px', objectFit:"cover"}}/>
+                   <img src={props.image} alt="logo"  style={{margin: '0px 20px'}}/>
                </div>
 
                 <div className='h-100'>
