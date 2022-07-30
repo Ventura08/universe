@@ -4,7 +4,7 @@ export function CenterDescription() {
         <section className="d-flex justify-content-center" style={{padding:'80px', background:"#161616", flexWrap:'wrap'}}>
             <div className="w-50" style={{color:'#ffff', padding:'50px'}}>
                 <h2 style={{color:'#FFAB07', fontSize:'60px'}}>The Earth</h2>
-                <p style={{width:'600px', fontSize:'18px'}}>
+                <p style={{width:'60%', fontSize:'18px'}}>
                     Lorem Ipsum has been the industry's standard dummy
                     text ever since the 1500s, when an unknown printer
                     took a galley of type and scrambled it to make a 

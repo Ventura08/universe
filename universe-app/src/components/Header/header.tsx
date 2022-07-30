@@ -33,8 +33,8 @@ export function Header(props: any) {
                 <div className='h-100'>
                     <ul className='h-100 d-flex justify-content-center align-items-center list-unstyled'>
                        <Link className=' text-decoration-none' to='/' style={{color:"#fff", margin:"0px 24px 0px 0px"}}><li>Home</li></Link>
-                       <Link className=' text-decoration-none' to='/dashboard' style={{color:"#fff",margin:"0px 24px"}}><li>Dashboard</li></Link>
-                       <Link className=' text-decoration-none' to='/galerry' style={{color:"#fff",margin:"0px 24px"}}><li>Galerry</li></Link>
+                       <Link className=' text-decoration-none' to='/planets' style={{color:"#fff",margin:"0px 24px"}}><li>Planets</li></Link>
+                       <Link className=' text-decoration-none' to='/astronauts' style={{color:"#fff",margin:"0px 24px"}}><li>Astronauts</li></Link>
                     </ul>
                 </div>
 
