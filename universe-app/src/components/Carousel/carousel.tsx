@@ -13,6 +13,15 @@ import Mercury from '../../assets/mercury.png'
 import Venus from '../../assets/venus.png'
 import { Spin } from 'antd';
 import 'antd/dist/antd.css';
+import Item from "antd/lib/list/Item";
+
+interface PlanetCurrent {
+  id:string;
+  englishName: string;
+  gravity: string;
+  sideralOrbit: string;
+  inclination:string
+}
 
 export function CarouselPlanets() {
   const [currentWidthScreen, setCurrentWidthScreen] = useState(0)
@@ -58,6 +67,13 @@ function checkImage(name: string) {
   }
 }
 
+function selectPlanet(id: string) {
+    let planetCurrent = filterPlanet?.find((item) => item.id === id)
+    return planetCurrent
+}
+
+console.log(filterPlanet)
+
 if(!loading) {
   return (
     <Swiper style={{background:"#1D1E24", padding:'40px 24px 40px 24px', height:'100%'}}
@@ -69,7 +85,7 @@ if(!loading) {
       {filterPlanet?.map((item) => {
         image = checkImage(item.englishName);
         return (
-            <SwiperSlide key={item.id} className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))', height:'320px', zIndex:'2'}}>
+            <SwiperSlide onClick={() => selectPlanet(item.id)} key={item.id} className="d-flex justify-content-center align-items-center" style={{border:'1px solid #AEAEAE','borderRadius':'40px', flexDirection:"column", background:'linear-gradient(to bottom, rgba(79, 79, 79, 1), rgba(29, 30, 36, 0))', height:'320px', zIndex:'2', cursor:'pointer'}}>
               <img src={image} alt="" style={item.englishName === 'Saturn' ? {marginTop: '-24px', width:'80%', height:'80%', objectFit:'contain'} : {marginTop: '-24px', width:'60%', height:'70%', objectFit:'contain'}}/>
               <p style={{color:'#FFAB07', fontSize:'24px', textShadow:'2px 2px 5px rgba(218, 218, 218, 0.25)', paddingTop:'10px'}}>{item.englishName}</p>
               <div className="d-flex justify-content-around flex-wrap w-100" style={{color:'#FFFF', fontSize:'18px', marginBottom:'10px'}}>
@@ -78,12 +94,12 @@ if(!loading) {
                   <span>{item.gravity}</span>
                 </div>
                 <div>
-                  <p style={{margin:0, padding:0}}>Volume</p>
-                  <span>{item.gravity}</span>
+                  <p style={{margin:0, padding:0}}>Orbita</p>
+                  <span>{item.sideralOrbit}</span>
                 </div>
                 <div>
                   <p style={{margin:0, padding:0}}>Inclinação</p>
-                  <span>{item.gravity}</span>
+                  <span>{item.inclination}</span>
                 </div>
               </div>
             </SwiperSlide>

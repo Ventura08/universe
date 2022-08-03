@@ -1,7 +1,7 @@
 import Earth from '../../assets/earth.png'
 export function CenterDescription() {
     return(
-        <section className="row" style={{padding:'50px', background:"#161616"}}>
+        <section className="row w-100 m-0" style={{padding:'50px', background:"#161616"}}>
             <div className='col-md-7' style={{color:'#ffff', padding:'50px'}}>
                 <h2 style={{color:'#FFAB07', fontSize:'60px'}}>The Earth</h2>
                 <p style={{width:'70%', fontSize:'18px'}}>
