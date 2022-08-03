@@ -3,4 +3,6 @@ export interface Planets {
     englishName: string;
     isPlanet: boolean;
     gravity: number;
+    sideralOrbit: string;
+    inclination:string
 }

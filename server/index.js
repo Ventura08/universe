@@ -1,5 +1,6 @@
 import express from "express";
 import { getPlanets } from "../api.js";
+import Moons from "../moons.json" assert {type: "json"};
 const planets = await getPlanets();
 
 
@@ -7,10 +8,8 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-  app.get("/api-planets", (req, res) => {
-    // res = await fetch("https://api.le-systeme-solaire.net/rest/bodies");
-    // console.log(res.json())
-    res.json({data: planets});
+  app.get("/moons", (req, res) => {
+    res.json({Moons});
   });
   
   app.listen(PORT, () => {
