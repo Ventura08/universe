@@ -11,6 +11,10 @@ const app = express();
   app.get("/moons", (req, res) => {
     res.json({Moons});
   });
+
+  app.delete('/moons/delete', (req, res) => {
+    res.send(console.log())
+  })
   
   app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
