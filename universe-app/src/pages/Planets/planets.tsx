@@ -8,9 +8,6 @@ export function PlanetsList() {
      <div>
       <CenterDescription/>
      </div>
-     <div>
-       <CarouselPlanets/>
-     </div>
    </section>
   )
 }
