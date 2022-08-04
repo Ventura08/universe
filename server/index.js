@@ -12,8 +12,16 @@ const app = express();
     res.json({Moons});
   });
 
-  app.delete('/moons/delete', (req, res) => {
-    res.send(console.log())
+  app.delete('/moon/:id/delete', (req, res) => {
+    res.send("AQUI VAI DELETEAR");
+  })
+
+  app.post('/moon/create', (req, res) => {
+    res.send("AQUI VAI CRIAR");
+  })
+
+  app.put('/moon/:id', (req, res) => {
+    res.send("AQUI VAI EDITAR");
   })
   
   app.listen(PORT, () => {
