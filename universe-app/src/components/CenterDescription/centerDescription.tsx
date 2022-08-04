@@ -13,13 +13,12 @@ import Mercury from "../../assets/mercury.png";
 import Venus from "../../assets/venus.png";
 import { Spin } from "antd";
 import "antd/dist/antd.css";
-import Item from "antd/lib/list/Item";
+
 export function CenterDescription() {
   const [currentWidthScreen, setCurrentWidthScreen] = useState(0);
   const [planets, setPlanets] = useState<{ bodies: Planets[] }>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [planetCenterDescription, setPlanetCenterDescription] = useState<{}>();
-  let teste: [{}];
+  const [planetCenterDescription, setPlanetCenterDescription] = useState<Planets>();
 
   let filterPlanet = planets?.bodies.filter((item) => item.isPlanet === true);
   let image = null;
@@ -70,19 +69,11 @@ export function CenterDescription() {
   }
 
   function selectPlanet(id: string) {
-    let planetCurrent = filterPlanet?.find((item) => item.id === id);
-    console.log(!planetCurrent);
+    let planetCurrent = filterPlanet?.find((item) => item.id === id); 
     setPlanetCenterDescription(planetCurrent);
-    let test: any;
-    planetCenterDescription
-      ? (test = Object.entries(planetCenterDescription).map((item) => {
-          let key = item[0];
-          return { key: item[1] };
-        }))
-      : (test = []);
-
-    console.log(test);
   }
+
+
   return (
     <div>
       <section
@@ -90,9 +81,11 @@ export function CenterDescription() {
         style={{ padding: "50px", background: "#161616" }}
       >
         <div className="col-md-7" style={{ color: "#ffff", padding: "50px" }}>
-          <h2 style={{ color: "#FFAB07", fontSize: "60px" }}>{}</h2>
+          <h2 style={{ color: "#FFAB07", fontSize: "60px" }}>{planetCenterDescription?.englishName}</h2>
           <p style={{ width: "70%", fontSize: "18px" }}>
-            A possui uma Inclinação de , gravidade de e Órbita de .
+            A possui uma Inclinação de {planetCenterDescription?.inclination} , 
+            gravidade de {planetCenterDescription?.gravity}
+            e Órbita de {planetCenterDescription?.sideralOrbit}.
           </p>
 
           <button
@@ -110,7 +103,7 @@ export function CenterDescription() {
           </button>
         </div>
         <div className="col-md-5 d-flex justify-content-center">
-          <img className="" src={Earth} alt="" />
+          <img className="" src={checkImage(String(planetCenterDescription?.englishName))} alt="" />
         </div>
       </section>
 
