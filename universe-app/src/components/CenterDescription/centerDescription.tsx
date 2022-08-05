@@ -13,6 +13,7 @@ import Mercury from "../../assets/mercury.png";
 import Venus from "../../assets/venus.png";
 import { Spin } from "antd";
 import "antd/dist/antd.css";
+import Item from "antd/lib/list/Item";
 
 export function CenterDescription() {
   const [currentWidthScreen, setCurrentWidthScreen] = useState(0);
@@ -65,11 +66,14 @@ export function CenterDescription() {
         return Venus;
       case "Saturn":
         return Saturn;
+      default :
+      return Earth
     }
   }
 
   function selectPlanet(id: string) {
     let planetCurrent = filterPlanet?.find((item) => item.id === id); 
+    console.log(planetCurrent)
     setPlanetCenterDescription(planetCurrent);
   }
 
@@ -81,11 +85,16 @@ export function CenterDescription() {
         style={{ padding: "50px", background: "#161616" }}
       >
         <div className="col-md-7" style={{ color: "#ffff", padding: "50px" }}>
-          <h2 style={{ color: "#FFAB07", fontSize: "60px" }}>{planetCenterDescription?.englishName}</h2>
-          <p style={{ width: "70%", fontSize: "18px" }}>
-            A possui uma Inclinação de {planetCenterDescription?.inclination} , 
-            gravidade de {planetCenterDescription?.gravity}
-            e Órbita de {planetCenterDescription?.sideralOrbit}.
+          <h2 style={{ color: "#FFAB07", fontSize: "60px" }}>The {planetCenterDescription?.englishName || 'Earth'}</h2>
+          <p style={{ width: "70%", fontSize: "20px" }}>
+            {planetCenterDescription?.englishName || 'Earth' } é um planeta do nosso sitema solar que
+            possui uma inclinação de {planetCenterDescription?.inclination || '0'}, 
+            gravidade de {planetCenterDescription?.gravity || '9.8'}, 
+            órbita de {planetCenterDescription?.sideralOrbit || '365.256'} e {planetCenterDescription?.moons !== null ? planetCenterDescription?.moons.length || '1' : '0' } luas.
+          </p>
+
+          <p style={{ width: "70%", fontSize: "20px" }}>
+          Para explorar mais informações sobre o planeta, clique no botão abaixo
           </p>
 
           <button
@@ -103,7 +112,7 @@ export function CenterDescription() {
           </button>
         </div>
         <div className="col-md-5 d-flex justify-content-center">
-          <img className="" src={checkImage(String(planetCenterDescription?.englishName))} alt="" />
+          <img style={{width:'80%', height:'100%', objectFit:'contain'}} className="" src={checkImage(String(planetCenterDescription?.englishName))} alt="" />
         </div>
       </section>
 

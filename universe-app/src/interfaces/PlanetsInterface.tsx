@@ -4,5 +4,6 @@ export interface Planets {
     isPlanet: boolean;
     gravity: number;
     sideralOrbit: string;
-    inclination:string
+    inclination:string;
+    moons: [];
 }
