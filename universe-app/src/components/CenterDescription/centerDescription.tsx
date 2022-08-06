@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Planets } from "../../interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -16,13 +16,15 @@ import "antd/dist/antd.css";
 import Item from "antd/lib/list/Item";
 
 export function CenterDescription() {
+  const planetMain = useRef(null);
   const [currentWidthScreen, setCurrentWidthScreen] = useState(0);
   const [planets, setPlanets] = useState<{ bodies: Planets[] }>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [planetCenterDescription, setPlanetCenterDescription] = useState<Planets>();
+  const [planetCenterDescription, setPlanetCenterDescription] =
+    useState<Planets>();
 
   let filterPlanet = planets?.bodies.filter((item) => item.isPlanet === true);
-  let image = null;
+  let image='';
   const isSlidePerViewAvaliable = currentWidthScreen > 1000 ? 4 : 2;
 
   useEffect(() => {
@@ -49,52 +51,53 @@ export function CenterDescription() {
   }, [getAll]);
 
   function checkImage(name: string) {
-    switch (name) {
-      case "Uranus":
-        return Uranus;
-      case "Neptune":
-        return Neptune;
-      case "Jupiter":
-        return Jupiter;
-      case "Mars":
-        return Mars;
-      case "Mercury":
-        return Mercury;
-      case "Earth":
-        return Earth;
-      case "Venus":
-        return Venus;
-      case "Saturn":
-        return Saturn;
-      default :
-      return Earth
-    }
+    const planets: object = {
+      Uranus: Uranus,
+      Neptune: Neptune,
+      Jupiter: Jupiter,
+      Mars: Mars,
+      Mercury: Mercury,
+      Earth: Earth,
+      Venus: Venus,
+      Saturn: Saturn,
+    };
+
+    return (planets as any)[name] ? (planets as any)[name] : Earth;
   }
 
   function selectPlanet(id: string) {
-    let planetCurrent = filterPlanet?.find((item) => item.id === id); 
-    console.log(planetCurrent)
+    let planetCurrent = filterPlanet?.find((item) => item.id === id);
+
+    // planetMain.current.scrollIntoView({ behavior: "smooth" });
     setPlanetCenterDescription(planetCurrent);
   }
-
 
   return (
     <div>
       <section
+        ref={planetMain}
         className="row w-100 m-0"
         style={{ padding: "50px", background: "#161616" }}
       >
         <div className="col-md-7" style={{ color: "#ffff", padding: "50px" }}>
-          <h2 style={{ color: "#FFAB07", fontSize: "60px" }}>The {planetCenterDescription?.englishName || 'Earth'}</h2>
+          <h2 style={{ color: "#FFAB07", fontSize: "60px" }}>
+            The {planetCenterDescription?.englishName || "Earth"}
+          </h2>
           <p style={{ width: "70%", fontSize: "20px" }}>
-            {planetCenterDescription?.englishName || 'Earth' } é um planeta do nosso sitema solar que
-            possui uma inclinação de {planetCenterDescription?.inclination || '0'}, 
-            gravidade de {planetCenterDescription?.gravity || '9.8'}, 
-            órbita de {planetCenterDescription?.sideralOrbit || '365.256'} e {planetCenterDescription?.moons !== null ? planetCenterDescription?.moons.length || '1' : '0' } luas.
+            {planetCenterDescription?.englishName || "Earth"} é um planeta do
+            nosso sitema solar que possui uma inclinação de{" "}
+            {planetCenterDescription?.inclination || "0"}, gravidade de{" "}
+            {planetCenterDescription?.gravity || "9.8"}, órbita de{" "}
+            {planetCenterDescription?.sideralOrbit || "365.256"} e{" "}
+            {planetCenterDescription?.moons !== null
+              ? planetCenterDescription?.moons.length || "1"
+              : "0"}{" "}
+            luas.
           </p>
 
           <p style={{ width: "70%", fontSize: "20px" }}>
-          Para explorar mais informações sobre o planeta, clique no botão abaixo
+            Para explorar mais informações sobre o planeta, clique no botão
+            abaixo
           </p>
 
           <button
@@ -112,7 +115,12 @@ export function CenterDescription() {
           </button>
         </div>
         <div className="col-md-5 d-flex justify-content-center">
-          <img style={{width:'80%', height:'100%', objectFit:'contain'}} className="" src={checkImage(String(planetCenterDescription?.englishName))} alt="" />
+          <img
+            style={{ width: "80%", height: "100%", objectFit: "contain" }}
+            className=""
+            src={checkImage(String(planetCenterDescription?.englishName))}
+            alt=""
+          />
         </div>
       </section>
 
