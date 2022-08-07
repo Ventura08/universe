@@ -1,13 +1,15 @@
-import { PageHeader } from 'antd';
-import React from 'react';
+import { Button } from "antd";
 
-const PageHeaderAstronauts: React.FC = () => (
-  <PageHeader
-    className="site-page-header"
-    onBack={() => null}
-    title="Listagem de luas"
-    subTitle="Crie e edite as informações abaixo."
-  />
-);
-
-export default PageHeaderAstronauts;
+export function PageHeaderAstronauts() {
+  return (
+    <div style={{ padding: "10px" }}>
+      <div className="d-flex justify-content-between align-items-center">
+        <h3>Listagem de luas</h3>
+        <Button type="primary">Adicionar</Button>
+      </div>
+      <div>
+        <p>Cadastre, edite e exclua as luas do sistema solar.</p>
+      </div>
+    </div>
+  );
+}
