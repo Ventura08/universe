@@ -18,18 +18,19 @@ export async function createMoon(item) {
     insertData(newData);
 }
 
-export async function updateMoon(item, id) {
-    const dataCurrent = await getData();
-    // console.log(typeof id)
-    dataCurrent.moons[id - 1] = item
-    insertData(dataCurrent);
-}
-
 function addMoon(item, data) {
     let datanew = data.moons;
     datanew.push(item);
     return { moons: datanew };
 }
+
+
+export async function updateMoon(item, id) {
+    const dataCurrent = await getData();
+    dataCurrent.moons[id - 1] = item
+    insertData(dataCurrent);
+}
+
 
 function findMoon(id, data) {
 }
