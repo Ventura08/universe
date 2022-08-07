@@ -1,6 +1,7 @@
 import { getData, insertData } from "../models/moon.js";
 
 export async function deleteMoon(id) {
+    console.log(id)
     const dataCurrent = await getData();
     const newData = removeMoons(id, dataCurrent);
     insertData(newData);
@@ -21,7 +22,7 @@ export async function updateMoon(item, id) {
     // console.log(Object.values(id) - 1);
     const dataCurrent = await getData();
     // console.log(typeof id)
-    dataCurrent.moons[Object.values(id) - 1] = item
+    dataCurrent.moons[id - 1] = item
     insertData(dataCurrent);
 }
 

@@ -2,13 +2,13 @@
     "moons": [
         {
             "id": 1,
-            "planet_reference": "Jupter",
+            "planet_reference": "Verde",
             "name": "Love",
             "radio": 123
         },
         {
             "id": 2,
-            "planet_reference": "Jupter",
+            "planet_reference": "Verde",
             "name": "Love",
             "radio": 123
         }

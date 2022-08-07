@@ -12,18 +12,20 @@ const app = express();
   });
 
   app.delete('/moon/:id/delete', (req, res) => {
-    deleteMoon(req.params.item);
+    console.log(req.params)
+    deleteMoon(req.params.id);
     res.send("deletado com sucesso! ");
   })
 
   app.post('/moon/create', (req, res) => {
-    createMoon(req.body);
+    // createMoon(req.body);
+    console.log(req.body)
     res.send("AQUI VAI CRIAR");
   })
 
   app.put('/moon/:id', (req, res) => {
-    //  console.log(req.params, req.body)
-    updateMoon(req.body, req.params)
+     console.log(req.body)
+    updateMoon(req.body, req.params.id)
     res.send("Editado com sucesso");
   })
   
