@@ -1,6 +1,6 @@
 import express from "express";
 import Moons from "./models/database/moons.json" assert {type: "json"};
-import { deleteMoon, createMoon } from "./controllers/moon.js";
+import { deleteMoon, createMoon, updateMoon } from "./controllers/moon.js";
 
 const PORT = process.env.PORT || 3001;
 
@@ -22,7 +22,9 @@ const app = express();
   })
 
   app.put('/moon/:id', (req, res) => {
-    res.send("AQUI VAI EDITAR");
+    //  console.log(req.params, req.body)
+    updateMoon(req.body, req.params)
+    res.send("Editado com sucesso");
   })
   
   app.listen(PORT, () => {

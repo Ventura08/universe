@@ -1,21 +1,15 @@
 {
     "moons": [
         {
-            "id": 4,
-            "planet_reference": "Saturn",
-            "name": "Ariel",
-            "radio": 123
-        },
-        {
-            "id": 5,
-            "planet_reference": "Neptune",
-            "name": "Galatei",
-            "radio": 123
-        },
-        {
             "id": 1,
             "planet_reference": "Jupter",
-            "name": "Test",
+            "name": "Love",
+            "radio": 123
+        },
+        {
+            "id": 2,
+            "planet_reference": "Jupter",
+            "name": "Love",
             "radio": 123
         }
     ]

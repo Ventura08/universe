@@ -17,10 +17,21 @@ export async function createMoon(item) {
     insertData(newData);
 }
 
+export async function updateMoon(item, id) {
+    // console.log(Object.values(id) - 1);
+    const dataCurrent = await getData();
+    // console.log(typeof id)
+    dataCurrent.moons[Object.values(id) - 1] = item
+    insertData(dataCurrent);
+}
+
 function addMoon(item, data) {
     let datanew = data.moons;
     datanew.push(item);
     return { moons: datanew };
+}
+
+function findMoon(id, data) {
 }
 
 
