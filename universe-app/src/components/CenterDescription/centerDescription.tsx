@@ -94,7 +94,7 @@ export function CenterDescription() {
           </p>
 
           <p style={{ width: "70%", fontSize: "20px" }}>
-          Para explorar mais informações sobre o planeta, clique no botão abaixo
+          Para explorar mais informações sobre o planeta, clique no botão abaixo ou selecione outros planetas.
           </p>
 
           <button
