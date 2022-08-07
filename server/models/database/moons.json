@@ -1,0 +1,28 @@
+{
+    "moons": [
+        {
+            "id": 2,
+            "planet_reference": "Mars",
+            "name": "Phobos",
+            "radio": 123
+        },
+        {
+            "id": 3,
+            "planet_reference": "Jupiter",
+            "name": "Io",
+            "radio": 123
+        },
+        {
+            "id": 4,
+            "planet_reference": "Saturn",
+            "name": "Ariel",
+            "radio": 123
+        },
+        {
+            "id": 5,
+            "planet_reference": "Neptune",
+            "name": "Galatei",
+            "radio": 123
+        }
+    ]
+}
