@@ -12,8 +12,6 @@ export function DynamicTable() {
       [{ id: number; planet_reference: string; name: string; radio: number }]
     >();
 
-  let form = document.getElementById("form-moon");
-  let data = new FormData(form);
   useEffect(() => {
     const api = async () => {
       const data = await fetch("/moons", {
@@ -99,9 +97,7 @@ export function DynamicTable() {
         <Modal.Footer>
           <Button
             style={{ border: "none", background: "#fdab09", color: "#fff" }}
-            onClick={() =>
-              fetch("/moon/create", { method: "POST", body: "helo" })
-            }
+            onClick={() => console.log("Cachinhos")}
           >
             Salvar
           </Button>
