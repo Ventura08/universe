@@ -26,7 +26,8 @@ export function PageHeaderAstronauts() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Cadastre sua lua</h4>
+          <label htmlFor="input-name">Name</label>
+          <input type="text" id="input-name" />
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
