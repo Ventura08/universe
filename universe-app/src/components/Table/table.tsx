@@ -1,16 +1,8 @@
-import { Space, Table } from "antd";
+import { Space } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import React, { useCallback, useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { PlanetService } from "../../services/PlanetService";
-import { json } from "stream/consumers";
-
-interface DataType {
-  id: number;
-  name: string;
-  radio: number;
-  planet_reference: string;
-}
+import Table from "react-bootstrap/Table";
 
 let myHeaders = {
   "Access-Control-Allow-Origin": true,
@@ -23,59 +15,51 @@ let myInit = {
   cache: "default",
 };
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Planet",
-    dataIndex: "planet_reference",
-    key: "planet",
-  },
-  {
-    title: "Radio",
-    dataIndex: "radio",
-    key: "radio",
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (_, record) => (
-      <Space size="middle">
-        <a>
-          <EditOutlined />
-        </a>
-        <a>
-          <DeleteOutlined />
-        </a>
-      </Space>
-    ),
-  },
-];
-
-// const data: DataType[] = [];
-
 export function DynamicTable() {
-  const [result, setResult] = useState<DataType[]>([]);
+  const [result, setResult] =
+    useState<
+      [{ id: number; planet_reference: string; name: string; radio: number }]
+    >();
 
   useEffect(() => {
     const api = async () => {
       const data = await fetch("/moons", {
         method: "GET",
-        mode:'no-cors',
+        mode: "no-cors",
       });
       const jsonData = await data.json();
-      console.log(jsonData);
-      await setResult(jsonData.moons);
+      // console.log(
+      //   Array.from(jsonData.Moons.moons).map((item) => {;
+      //   })
+      // );
+      setResult(jsonData.Moons.moons);
     };
-
     api();
   }, []);
-
-  return <Table columns={columns} dataSource={result} />;
+  return (
+    <Table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Radio</th>
+          <th>Orbit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {result?.map((item) => {
+          return (
+            <tr>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.planet_reference}</td>
+              <td>{item.radio}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </Table>
+  );
 }
 
 export default DynamicTable;
