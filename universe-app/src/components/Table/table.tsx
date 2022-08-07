@@ -1,21 +1,12 @@
-import { Space } from "antd";
-import type { ColumnsType } from "antd/es/table";
-import React, { useCallback, useEffect, useState } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import Table from "react-bootstrap/Table";
-
-let myHeaders = {
-  "Access-Control-Allow-Origin": true,
-};
-
-let myInit = {
-  method: "GET",
-  headers: myHeaders,
-  mode: "cors",
-  cache: "default",
-};
+import {useEffect, useState } from "react";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import Modal from "react-bootstrap/Modal";
+import { Input } from "antd";
+import { Button } from "antd";
 
 export function DynamicTable() {
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [result, setResult] =
     useState<
       [{ id: number; planet_reference: string; name: string; radio: number }]
@@ -28,22 +19,20 @@ export function DynamicTable() {
         mode: "no-cors",
       });
       const jsonData = await data.json();
-      // console.log(
-      //   Array.from(jsonData.Moons.moons).map((item) => {;
-      //   })
-      // );
       setResult(jsonData.Moons.moons);
     };
     api();
   }, []);
   return (
+    <div>
     <Table>
       <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
+          <th>Planet Reference</th>
           <th>Radio</th>
-          <th>Orbit</th>
+          <th>#</th>
         </tr>
       </thead>
       <tbody>
@@ -54,11 +43,53 @@ export function DynamicTable() {
               <td>{item.name}</td>
               <td>{item.planet_reference}</td>
               <td>{item.radio}</td>
+              <td>
+                <div className="d-flex">
+                <EditOutlined style={{marginRight:'20px'}} onClick={() => setShowModal(!showModal)}/>
+                <DeleteOutlined style={{marginRight:'20px'}} onClick={(item) => console.log(item)} />
+                </div>
+              </td>
             </tr>
           );
         })}
       </tbody>
     </Table>
+
+    <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        show={showModal}
+        centered>
+        <Modal.Header closeButton onClick={() => setShowModal(!showModal)}>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Edição de Luas
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="row">
+            <div className="col-md-6" style={{ marginTop: "10px" }}>
+              <label>Nome</label>
+              <Input placeholder="Nome" id="name" />
+            </div>
+
+            <div className="col-md-6" style={{ marginTop: "10px" }}>
+              <label>Planet reference</label>
+              <Input placeholder="Planeta referência" id="planet_reference" />
+            </div>
+
+            <div className="col-md-6" style={{ marginTop: "15px" }}>
+              <label>Radio</label>
+              <Input placeholder="Radio" id="radio" />
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+        <Button style={{border:'none', background:"#fdab09", color:'#fff'}} onClick={() => console.log('oi')}>
+          Salvar
+        </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 }
 

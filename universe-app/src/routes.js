@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import logo from "./assets/Logotipow.png"
 import { PlanetsList } from './pages/Planets/planets';
 import { Astronauts } from './pages/Astronauts/astronauts';
-import { Home } from './pages/Planets/home';
+import { Home } from './pages/Home/home';
 import video from './assets/earth.mp4';
 
 export function AppRoutes() {

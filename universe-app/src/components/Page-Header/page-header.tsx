@@ -1,4 +1,5 @@
 import { Button } from "antd";
+import { Input } from "antd";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 export function PageHeaderAstronauts() {
@@ -22,14 +23,32 @@ export function PageHeaderAstronauts() {
       >
         <Modal.Header closeButton onClick={() => setShowModal(!showModal)}>
           <Modal.Title id="contained-modal-title-vcenter">
-            Cadastrar Lua
+            Cadastre Luas
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <label htmlFor="input-name">Name</label>
-          <input type="text" id="input-name" />
+          <div className="row">
+            <div className="col-md-6" style={{ marginTop: "10px" }}>
+              <label>Nome</label>
+              <Input placeholder="Nome" id="name" />
+            </div>
+
+            <div className="col-md-6" style={{ marginTop: "10px" }}>
+              <label>Planet reference</label>
+              <Input placeholder="Planeta referência" id="planet_reference" />
+            </div>
+
+            <div className="col-md-6" style={{ marginTop: "15px" }}>
+              <label>Radio</label>
+              <Input placeholder="Radio" id="radio" />
+            </div>
+          </div>
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer>
+        <Button style={{border:'none', background:"#fdab09", color:'#fff'}} onClick={() => console.log('oi')}>
+          Salvar
+        </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
