@@ -3,6 +3,7 @@ import type { ColumnsType } from "antd/es/table";
 import React, { useCallback, useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { PlanetService } from "../../services/PlanetService";
+import { json } from "stream/consumers";
 
 interface DataType {
   id: number;
@@ -62,12 +63,13 @@ export function DynamicTable() {
 
   useEffect(() => {
     const api = async () => {
-      const data = await fetch("http://localhost:3001/moons", {
+      const data = await fetch("/moons", {
         method: "GET",
+        mode:'no-cors',
       });
-
       const jsonData = await data.json();
-      await setResult(jsonData.results);
+      console.log(jsonData);
+      await setResult(jsonData.moons);
     };
 
     api();

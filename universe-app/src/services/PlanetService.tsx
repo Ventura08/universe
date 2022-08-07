@@ -3,10 +3,7 @@ import { Moons } from "../interfaces/MoonsInterface";
 import { Api } from "../providers"
 
 //API PUBLIC
-const getAll = () => Api.get<{bodies: Planets[]}>('https://api.le-systeme-solaire.net/rest/bodies', {
-    headers: {
-        "Access-Control-Allow-Origin": "*"
-    }});
+const getAll = () => Api.get<{bodies: Planets[]}>('https://api.le-systeme-solaire.net/rest/bodies');
 
 //API INTERN
 const getAllMoons = () => Api.get<Moons[]>('http://localhost:3001/moons');
