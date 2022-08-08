@@ -1,24 +1,15 @@
 import { Button } from "antd";
 import { Input } from "antd";
-import { Console } from "console";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
+
 export function PageHeaderAstronauts() {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   let idInput = document.getElementById("create_id") as HTMLInputElement;
   let nameInput = document.getElementById("create_name") as HTMLInputElement;
-  let planetInput = document.getElementById(
-    "create_planet_reference"
-  ) as HTMLInputElement;
+  let planetInput = document.getElementById("create_planet_reference") as HTMLInputElement;
   let radioInput = document.getElementById("create_radio") as HTMLInputElement;
-
-  let data = {
-    id: idInput?.value,
-    name: nameInput?.value,
-    planet_reference: planetInput?.value,
-    radio: radioInput?.value,
-  };
 
   return (
     <div style={{ padding: "10px" }}>

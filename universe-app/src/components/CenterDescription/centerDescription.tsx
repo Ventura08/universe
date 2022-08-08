@@ -13,7 +13,6 @@ import Mercury from "../../assets/mercury.png";
 import Venus from "../../assets/venus.png";
 import { Spin } from "antd";
 import "antd/dist/antd.css";
-import Item from "antd/lib/list/Item";
 
 export function CenterDescription() {
   const [currentWidthScreen, setCurrentWidthScreen] = useState(0);
