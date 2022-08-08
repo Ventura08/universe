@@ -20,7 +20,7 @@ app.delete('/moon/:id/delete', (req, res) => {
 
 app.post('/moon/create', (req, res) => {
   createMoon(req.body);
-  res.send(req.body);
+  res.json({moons:req.body})
 })
 
 app.put('/moon/:id', (req, res) => {

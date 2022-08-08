@@ -6,10 +6,26 @@ import Modal from "react-bootstrap/Modal";
 export function PageHeaderAstronauts() {
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  let idInput = document.getElementById("create_id") as HTMLInputElement;
-  let nameInput = document.getElementById("create_name") as HTMLInputElement;
-  let planetInput = document.getElementById("create_planet_reference") as HTMLInputElement;
-  let radioInput = document.getElementById("create_radio") as HTMLInputElement;
+  let idInput: any;
+  let nameInput: any;
+  let planetInput: any;
+  let radioInput: any;
+
+  function handleChangeId(event: any) {
+    idInput = event.target.value;
+  }
+
+  function handleChangeName(event: any) {
+    nameInput = event.target.value;
+  }
+
+  function handleChangePlanet(event: any) {
+    planetInput = event.target.value;
+  }
+
+  function handleChangeRadio(event: any) {
+    radioInput = event.target.value;
+  }
 
   return (
     <div style={{ padding: "10px" }}>
@@ -35,15 +51,14 @@ export function PageHeaderAstronauts() {
         </Modal.Header>
         <Modal.Body>
           <div className="row">
-
-          <div className="col-md-6" style={{ marginTop: "10px" }}>
+            <div className="col-md-6" style={{ marginTop: "10px" }}>
               <label>ID</label>
-              <Input placeholder="ID" id="create_id" />
-          </div>
+              <Input placeholder="ID" id="create_id" onChange={handleChangeId} />
+            </div>
 
             <div className="col-md-6" style={{ marginTop: "10px" }}>
               <label>Nome</label>
-              <Input placeholder="Nome" id="create_name" />
+              <Input placeholder="Nome" id="create_name" onChange={handleChangeName} />
             </div>
 
             <div className="col-md-6" style={{ marginTop: "10px" }}>
@@ -51,12 +66,13 @@ export function PageHeaderAstronauts() {
               <Input
                 placeholder="Planeta referência"
                 id="create_planet_reference"
+                onChange={handleChangePlanet}
               />
             </div>
 
             <div className="col-md-6" style={{ marginTop: "15px" }}>
               <label>Radio</label>
-              <Input placeholder="Radio" id="create_radio" />
+              <Input placeholder="Radio" id="create_radio" onChange={handleChangeRadio} />
             </div>
           </div>
         </Modal.Body>
@@ -67,14 +83,14 @@ export function PageHeaderAstronauts() {
               fetch("/moon/create", {
                 method: "POST",
                 headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-               },
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
                 body: JSON.stringify({
-                  "id": idInput?.value,
-                  "name": nameInput?.value,
-                  "planet_reference": planetInput?.value,
-                  "radio": radioInput?.value,
+                  id: idInput,
+                  name: nameInput,
+                  planet_reference: planetInput,
+                  radio: radioInput,
                 }),
               })
             }
