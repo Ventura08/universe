@@ -5,6 +5,7 @@ import { deleteMoon, createMoon, updateMoon } from "./controllers/moon.js";
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(express.urlencoded());
 app.use(express.json());
 
 app.get("/moons", (req, res) => {

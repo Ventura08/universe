@@ -5,6 +5,11 @@ import Modal from "react-bootstrap/Modal";
 import { Input } from "antd";
 import { Button } from "antd";
 
+const findMoon = (data: object,id: string) => {
+  // console.log(Object.entries(data).find(item => item[0] == id));  
+  return Object.entries(data).find(item => item[0] == id);
+}
+
 export function DynamicTable() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [result, setResult] =
@@ -23,6 +28,12 @@ export function DynamicTable() {
     };
     api();
   }, []);
+  let idInput = document.getElementById("id") as HTMLInputElement;
+  let nameInput = document.getElementById("name") as HTMLInputElement;
+  let planetInput = document.getElementById(
+    "planet_reference"
+  ) as HTMLInputElement;
+  let radioInput = document.getElementById("radio") as HTMLInputElement;
   return (
     <div>
       <Table>
@@ -47,12 +58,21 @@ export function DynamicTable() {
                   <div className="d-flex">
                     <EditOutlined
                       style={{ marginRight: "20px" }}
-                      onClick={() => setShowModal(!showModal)}
+                      onClick={() => {
+                        setShowModal(!showModal)
+                        const data = findMoon(result, String(item.id))!
+                        idInput.value = data[1].id
+                        nameInput.value = data[1].name
+                        planetInput.value = data[1].planet_reference
+                        radioInput.value = data[1].radio
+                      }}
                     />
                     <DeleteOutlined
                       style={{ marginRight: "20px" }}
-                      onClick={() =>
-                        fetch(`/moon/${item.id}/delete`, { method: "DELETE" })
+                      onClick={async () =>
+                        await fetch(`/moon/${item.id}/delete`, {
+                          method: "DELETE",
+                        })
                       }
                     />
                   </div>
@@ -77,6 +97,10 @@ export function DynamicTable() {
         <Modal.Body>
           <form id="form-moon" encType="multipart/form-data">
             <div className="row">
+            <div className="col-md-6" style={{ marginTop: "10px" }}>
+              <label>ID</label>
+              <Input placeholder="ID" id="create_id" />
+          </div>
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>Nome</label>
                 <Input placeholder="Nome" id="name" />

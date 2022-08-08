@@ -13,13 +13,6 @@ export function PageHeaderAstronauts() {
   ) as HTMLInputElement;
   let radioInput = document.getElementById("create_radio") as HTMLInputElement;
 
-  let data = {
-    id: idInput?.value,
-    name: nameInput?.value,
-    planet_reference: planetInput?.value,
-    radio: radioInput?.value,
-  };
-
   return (
     <div style={{ padding: "10px" }}>
       <div className="d-flex justify-content-between align-items-center">
