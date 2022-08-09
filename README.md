@@ -102,5 +102,5 @@ Link: https://api.le-systeme-solaire.net/swagger/
     https://api.le-systeme-solaire.net/rest/bodies
 
 
-## Obrigada pela atenção!
+## Agradecemos pela atenção!
 
