@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import Modal from "react-bootstrap/Modal";
 import { Input } from "antd";
 import { Button } from "antd";
@@ -192,7 +192,6 @@ export function DynamicTable() {
           </Modal.Footer>
         </Modal>
         <Modal
-          size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           show={deleteModal}
           centered
@@ -201,14 +200,16 @@ export function DynamicTable() {
             closeButton
             onClick={() => setShowModalDelete(!deleteModal)}
           >
-            <Modal.Title id="contained-modal-title-vcenter">
-              Parabens, voce apagou uma lua 
+            <Modal.Title id="contained-modal-title-vcenter" className="d-flex align-items-center">
+              <CheckCircleOutlined style={{marginRight:'10px', color:'#27B345'}}/>
+             <span style={{color:'#27B345'}}> Parabéns </span>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row justify-content-center">
               <div className="col-md-12" style={{ marginTop: "10px" }}>
-                <h1>Excluído com sucesso</h1>
+                <p>Sua lua foi excluída com sucesso!</p>
+                <p>Para inseri-lá novamente, clique em adicionar.</p>
               </div>
             </div>
           </Modal.Body>
