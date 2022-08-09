@@ -13,9 +13,10 @@ app.get("/moons", (req, res) => {
 });
 
 app.delete('/moon/:id/delete', (req, res) => {
-  console.log(req.params)
+  // console.log(req.params)
   deleteMoon(req.params.id);
   res.send("deletado com sucesso! ");
+  return true
 })
 
 app.post('/moon/create', (req, res) => {

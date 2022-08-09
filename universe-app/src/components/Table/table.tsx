@@ -10,6 +10,7 @@ const findMoon = (data: object, id: string) => {
 };
 
 export function DynamicTable() {
+  const [deleteModal, setShowModalDelete] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false);
   const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
@@ -23,12 +24,10 @@ export function DynamicTable() {
   let planetInput: any;
   let radioInput: any;
 
-  let idInputedit = document.getElementById("id") as HTMLInputElement;
-  let nameInputedit = document.getElementById("name") as HTMLInputElement;
-  let planetInputedit = document.getElementById(
-    "planet_reference"
-  ) as HTMLInputElement;
-  let radioInputedit = document.getElementById("radio") as HTMLInputElement;
+  let idInputEdit: any
+  let nameInputEdit: any
+  let planetInputEdit: any
+  let radioInputEdit: any
 
   const api = async () => {
     const data = await fetch("/moons", {
@@ -36,15 +35,14 @@ export function DynamicTable() {
       mode: "no-cors",
     });
     const jsonData = await data.json();
-    console.log(jsonData.Moons.moons);
+    // console.log(jsonData.Moons.moons);
     setResult(jsonData.Moons.moons);
 
-    setRequest(request);
   };
 
   useEffect(() => {
     api();
-  }, [showModalAdd]);
+  }, [showModalAdd, deleteModal, showModal]);
 
   async function createMoons() {
     console.log("create moons init");
@@ -63,7 +61,26 @@ export function DynamicTable() {
       }),
     });
 
-    setRequest(!request)
+    // api();
+  }
+
+  async function editMoon(id: string) {
+    // console.log("create moons init");
+
+    await fetch(`/moon/${id}`, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: idInputEdit,
+        name: nameInputEdit,
+        planet_reference: planetInputEdit,
+        radio: radioInputEdit,
+      }),
+    });
+
     // api();
   }
 
@@ -82,6 +99,22 @@ export function DynamicTable() {
 
   function handleChangeRadio(event: any) {
     radioInput = event.target.value;
+  }
+
+  function handleEditChangeId(event: any) {
+    idInputEdit = event.target.value;
+  }
+
+  function handleEditChangeName(event: any) {
+    nameInputEdit = event.target.value;
+  }
+
+  function handleEditChangePlanet(event: any) {
+    planetInputEdit = event.target.value;
+  }
+
+  function handleEditChangeRadio(event: any) {
+    radioInputEdit = event.target.value;
   }
 
   return (
@@ -158,6 +191,28 @@ export function DynamicTable() {
             </Button>
           </Modal.Footer>
         </Modal>
+        <Modal
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          show={deleteModal}
+          centered
+        >
+          <Modal.Header
+            closeButton
+            onClick={() => setShowModalDelete(!deleteModal)}
+          >
+            <Modal.Title id="contained-modal-title-vcenter">
+              Parabens, voce apagou uma lua 
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="row justify-content-center">
+              <div className="col-md-12" style={{ marginTop: "10px" }}>
+                <h1>Excluído com sucesso</h1>
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
       </div>
       <Table>
         <thead>
@@ -190,7 +245,10 @@ export function DynamicTable() {
                       onClick={async () =>
                         await fetch(`/moon/${item.id}/delete`, {
                           method: "DELETE",
+                        }).then((res) => {
+                          res.status == 200 ? setShowModalDelete(!deleteModal) : console.log('err')
                         })
+                        
                       }
                     />
                   </div>
@@ -217,21 +275,21 @@ export function DynamicTable() {
             <div className="row">
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>ID</label>
-                <Input placeholder="ID" id="create_id" />
+                <Input placeholder="ID" id="create_id" onChange={idInputEdit}/>
               </div>
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>Nome</label>
-                <Input placeholder="Nome" id="name" />
+                <Input placeholder="Nome" id="name" onChange={nameInputEdit}/>
               </div>
 
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>Planet reference</label>
-                <Input placeholder="Planeta referência" id="planet_reference" />
+                <Input placeholder="Planeta referência" id="planet_reference" onChange={planetInputEdit}/>
               </div>
 
               <div className="col-md-6" style={{ marginTop: "15px" }}>
                 <label>Radio</label>
-                <Input placeholder="Radio" id="radio" />
+                <Input placeholder="Radio" id="radio" onChange={radioInputEdit}/>
               </div>
             </div>
           </form>
@@ -239,7 +297,7 @@ export function DynamicTable() {
         <Modal.Footer>
           <Button
             style={{ border: "none", background: "#fdab09", color: "#fff" }}
-            onClick={() => console.log("editando")}
+            onClick={() => editMoon(idInputEdit)}
           >
             Salvar
           </Button>
