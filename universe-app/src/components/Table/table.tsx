@@ -12,6 +12,7 @@ const findMoon = (data: object, id: string) => {
 export function DynamicTable() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [request, setRequest] = useState<boolean>(false);
+  const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
   const [result, setResult] =
     useState<
       [{ id: number; planet_reference: string; name: string; radio: number }]
@@ -43,7 +44,7 @@ export function DynamicTable() {
 
   useEffect(() => {
     api();
-  }, [request]);
+  }, [showModalAdd]);
 
   async function createMoons() {
     console.log("create moons init");
@@ -66,7 +67,6 @@ export function DynamicTable() {
     // api();
   }
 
-  const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
 
   function handleChangeId(event: any) {
     idInput = event.target.value;
