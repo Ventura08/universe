@@ -1,6 +1,10 @@
 import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
-import { EditOutlined, DeleteOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  CheckCircleOutlined,
+} from "@ant-design/icons";
 import Modal from "react-bootstrap/Modal";
 import { Input } from "antd";
 import { Button } from "antd";
@@ -24,10 +28,10 @@ export function DynamicTable() {
   let planetInput: any;
   let radioInput: any;
 
-  let idInputEdit: any
-  let nameInputEdit: any
-  let planetInputEdit: any
-  let radioInputEdit: any
+  let idInputEdit: any;
+  let nameInputEdit: any;
+  let planetInputEdit: any;
+  let radioInputEdit: any;
 
   const api = async () => {
     const data = await fetch("/moons", {
@@ -37,7 +41,6 @@ export function DynamicTable() {
     const jsonData = await data.json();
     // console.log(jsonData.Moons.moons);
     setResult(jsonData.Moons.moons);
-
   };
 
   useEffect(() => {
@@ -60,13 +63,9 @@ export function DynamicTable() {
         radio: radioInput,
       }),
     });
-
-    // api();
   }
 
   async function editMoon(id: string) {
-    // console.log("create moons init");
-
     await fetch(`/moon/${id}`, {
       method: "PUT",
       headers: {
@@ -80,10 +79,7 @@ export function DynamicTable() {
         radio: radioInputEdit,
       }),
     });
-
-    // api();
   }
-
 
   function handleChangeId(event: any) {
     idInput = event.target.value;
@@ -200,9 +196,14 @@ export function DynamicTable() {
             closeButton
             onClick={() => setShowModalDelete(!deleteModal)}
           >
-            <Modal.Title id="contained-modal-title-vcenter" className="d-flex align-items-center">
-              <CheckCircleOutlined style={{marginRight:'10px', color:'#27B345'}}/>
-             <span style={{color:'#27B345'}}> Parabéns </span>
+            <Modal.Title
+              id="contained-modal-title-vcenter"
+              className="d-flex align-items-center"
+            >
+              <CheckCircleOutlined
+                style={{ marginRight: "10px", color: "#27B345" }}
+              />
+              <span style={{ color: "#27B345" }}> Parabéns </span>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -247,9 +248,10 @@ export function DynamicTable() {
                         await fetch(`/moon/${item.id}/delete`, {
                           method: "DELETE",
                         }).then((res) => {
-                          res.status == 200 ? setShowModalDelete(!deleteModal) : console.log('err')
+                          res.status === 200
+                            ? setShowModalDelete(!deleteModal)
+                            : console.log("err");
                         })
-                        
                       }
                     />
                   </div>
@@ -276,21 +278,37 @@ export function DynamicTable() {
             <div className="row">
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>ID</label>
-                <Input placeholder="ID" id="create_id" onChange={idInputEdit}/>
+                <Input
+                  placeholder="ID"
+                  id="create_id"
+                  onChange={handleEditChangeId}
+                />
               </div>
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>Nome</label>
-                <Input placeholder="Nome" id="name" onChange={nameInputEdit}/>
+                <Input
+                  placeholder="Nome"
+                  id="name"
+                  onChange={handleEditChangeName}
+                />
               </div>
 
               <div className="col-md-6" style={{ marginTop: "10px" }}>
                 <label>Planet reference</label>
-                <Input placeholder="Planeta referência" id="planet_reference" onChange={planetInputEdit}/>
+                <Input
+                  placeholder="Planeta referência"
+                  id="planet_reference"
+                  onChange={handleEditChangePlanet}
+                />
               </div>
 
               <div className="col-md-6" style={{ marginTop: "15px" }}>
                 <label>Radio</label>
-                <Input placeholder="Radio" id="radio" onChange={radioInputEdit}/>
+                <Input
+                  placeholder="Radio"
+                  id="radio"
+                  onChange={handleEditChangeRadio}
+                />
               </div>
             </div>
           </form>
