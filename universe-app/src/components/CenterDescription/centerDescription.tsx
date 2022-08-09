@@ -124,8 +124,6 @@ export function CenterDescription() {
           }}
           spaceBetween={50}
           slidesPerView={isSlidePerViewAvaliable}
-          // onSlideChange={() => console.log("slide change")}
-          // onSwiper={(swiper) => console.log(swiper)}
         >
           {filterPlanet?.map((item) => {
             image = checkImage(item.englishName);

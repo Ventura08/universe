@@ -9,14 +9,14 @@ import Modal from "react-bootstrap/Modal";
 import { Input } from "antd";
 import { Button } from "antd";
 
-const findMoon = (data: object, id: string) => {
-  return Object.entries(data).find((item: any) => item[0] === id);
-};
+// const findMoon = (data: object, id: string) => {
+//   return Object.entries(data).find((item: any) => item[0] === id);
+// };
 
 export function DynamicTable() {
   const [deleteModal, setShowModalDelete] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [request, setRequest] = useState<boolean>(false);
+  // const [request, setRequest] = useState<boolean>(false);
   const [showModalAdd, setShowModalAdd] = useState<boolean>(false);
   const [result, setResult] =
     useState<
@@ -39,7 +39,6 @@ export function DynamicTable() {
       mode: "no-cors",
     });
     const jsonData = await data.json();
-    // console.log(jsonData.Moons.moons);
     setResult(jsonData.Moons.moons);
   };
 
@@ -48,8 +47,6 @@ export function DynamicTable() {
   }, [showModalAdd, deleteModal, showModal]);
 
   async function createMoons() {
-    console.log("create moons init");
-
     await fetch("/moon/create", {
       method: "POST",
       headers: {

@@ -6,6 +6,5 @@ export async function getData() {
 }
 
 export async function insertData(data) {
-    console.log(data)
     return await fs.writeFileSync('server/models/database/moons.json', JSON.stringify(data, null, 4));
 }

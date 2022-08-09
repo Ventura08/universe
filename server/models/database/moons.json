@@ -1,22 +1,40 @@
 {
-    "moons": [
-        {
-            "id": "1",
-            "name": "babi",
-            "planet_reference": "babi",
-            "radio": "babi"
-        },
-        {
-            "id": "2",
-            "name": "Phobos",
-            "planet_reference": "babi",
-            "radio": "12345"
-        },
-        {
-            "id": "3",
-            "name": "Phobos",
-            "planet_reference": "babi",
-            "radio": "12345"
-        }
-    ]
+  "moons": [
+    {
+      "id": "1",
+      "name": "Moons",
+      "planet_reference": "Earth",
+      "radio": "1737"
+    },
+    {
+      "id": "2",
+      "name": "Phobos",
+      "planet_reference": "Mars",
+      "radio": "11000"
+    },
+    {
+      "id": "3",
+      "name": "Europa",
+      "planet_reference": "Jupter",
+      "radio": "1560"
+    },
+    {
+      "id": "4",
+      "name": "Titan",
+      "planet_reference": "Saturn",
+      "radio": "500"
+    },
+    {
+      "id": "5",
+      "name": "Ariel",
+      "planet_reference": "Uranus",
+      "radio": "578"
+    },
+    {
+      "id": "6",
+      "name": "Galateia",
+      "planet_reference": "Neptune",
+      "radio": "87"
+    }
+  ]
 }
